@@ -34,10 +34,15 @@ body {
   font-size: 40px;
   font-weight: 700;
   color: #fff;
-  letter-spacing: 6px;
+  letter-spacing: 3px;
   text-align: center;
   padding-top: 12px;
   margin-bottom: 16px;
+  padding-bottom: 15px;
+
+  border-bottom: 1px rgb(184, 184, 184) solid;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 .chat-container {
@@ -58,10 +63,15 @@ body {
   color: #fff;
   font-size: 16px;
   line-height: 1.4;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-family: sans-serif;
+  /* ! */
+  box-shadow: rgb(93, 93, 93) 1px 1px 1px;
 }
 
 .user-message {
-  background-color: #0e89e1;
+  background-color: #1272b6;
   align-self: flex-end;
   border-bottom-right-radius: 2px;
 }
@@ -93,7 +103,16 @@ body {
   font-size: 16px;
   resize: none;
   border: none;
-  outline: none;
+  outline: none;console.log("Application started.");
+console.log("Styles loaded.");
+console.log("DOM loaded.");
+console.log("Chat container initialized.");
+console.log("User message component initialized.");
+console.log("Response message component initialized.");
+console.log("Content component initialized.");
+console.log("Textarea component initialized.");
+console.log("Icon component initialized.");
+console.log("Button component initialized.");
 }
 
 .icon {
