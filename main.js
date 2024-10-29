@@ -7,9 +7,20 @@ const generateBtn = document.getElementById("btn");
 const imageUploader = document.getElementById("imageUploader");
 const audioUploader = document.getElementById("audioUploader");
 
+imageUploader.addEventListener("input", () => {
+  document
+    .querySelector("div[class='image'] i")
+    .classList.add("uploadImageAudio");
+});
+audioUploader.addEventListener("input", () => {
+  document
+    .querySelector("div[class='audio'] i")
+    .classList.add("uploadImageAudio");
+});
+
 const API_KEY = "YOUR_API_KEY";
 const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // SHOULD BE EXPLAINED OR NOT?
 const toBase64 = (file) => {
@@ -25,6 +36,16 @@ const generateResult = async (prompt) => {
   try {
     const result = await model.generateContent(prompt);
     const text = await result.response.text();
+
+    imageUploader.value = "";
+    document
+      .querySelector("div[class='image'] i")
+      .classList.remove("uploadImageAudio");
+
+    audioUploader.value = "";
+    document
+      .querySelector("div[class='audio'] i")
+      .classList.remove("uploadImageAudio");
 
     addMessage(text, "response-message");
   } catch (error) {
