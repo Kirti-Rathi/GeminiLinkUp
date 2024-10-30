@@ -88,3 +88,15 @@ generateBtn.addEventListener("click", async () => {
   }
   generateResult(prompt);
 });
+
+
+/**
+ * Event listener to submit when pressed enter
+ * (optinal)
+ */
+promptInput.addEventListener("keydown", (event) => {
+  if(event.key === "Enter") {
+    // Simulate clicking the button
+    generateBtn.click()
+  }
+});
