@@ -11,14 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <title>Gemini LinkUp</title>
   </head>
-  <body>
-    <div class="container">
-      <div class="overlay">
-        
+  <body class="container">
+ 
+    <div class="overlay">
+      <header>
         <h1>Gemini LinkUp</h1>
-
-        <div class="chat-container" id="chatContainer">
-
+      </header>
+      <main class="chat-container" id="chatContainer"/>
+      <footer class="content-container">  
         <div class="content">
           <label for="stream">
             Stream?
@@ -63,9 +63,8 @@
           </button>
 
         </div>
-      </div>
+      </footer>
     </div>
-
     <script type="module" src="./main.js"></script>
   </body>
 </html>

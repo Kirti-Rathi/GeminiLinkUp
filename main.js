@@ -101,7 +101,10 @@ function addMessage(text, className, messageDiv=null) {
 }
 
 generateBtn.addEventListener("click", async () => {
-  if (!promptInput.value) return;
+  // Cleanse the prompt
+  promptInput.value = promptInput.value.replaceAll('\t', '').replaceAll('\n', '');
+  if (!promptInput.value || promptInput.value.length === 0) return;
+
   const prompt = [{ text: promptInput.value }];
 
   addMessage(promptInput.value, "user-message");
