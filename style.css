@@ -5,6 +5,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #fff;
+  font-family: "Robot", sans-serif;
 }
 
 html,
@@ -12,6 +14,13 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: #121212;
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 100%;
+  content: '';
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .container {
@@ -118,7 +127,8 @@ body {
 }
 
 .content > textarea {
-  width: 85%;
+  width: auto;
+  flex: 1 1 0%;
   height: 2rem;
   background: transparent;
   color: #fff;
@@ -126,6 +136,28 @@ body {
   resize: none;
   border: none;
   outline: none;
+}
+
+.content div[role='button'], .content button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 3rem;
+}
+
+.content label[for='stream'] {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items:center;
+  gap: 0.5rem;
+  font-size: 12px;
+}
+
+.content input[type='checkbox'] {
+  width: 1rem;
+  height: 1rem;
 }
 
 .icon {

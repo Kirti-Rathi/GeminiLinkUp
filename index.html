@@ -14,14 +14,20 @@
   <body>
     <div class="container">
       <div class="overlay">
-
+        
         <h1>Gemini LinkUp</h1>
 
         <div class="chat-container" id="chatContainer">
 
         <div class="content">
+          <label for="stream">
+            Stream?
+            <input type="checkbox" value="stream" name="stream" id="stream">
+          </label>
+          <div class="vertical-divider"></div>
 
-          <div class="image">
+
+          <div class="image" role="button">
             <label for="imageUploader" class="media"
               ><i class="ri-image-add-fill icon"></i
             ></label>
@@ -40,7 +46,7 @@
             placeholder="Ask anything..."
           ></textarea>
 
-          <div class="audio">
+          <div class="audio" role="button">
             <label for="audioUploader" class="media"
               ><i class="ri-mic-line icon"></i
             ></label>
