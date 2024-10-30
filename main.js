@@ -6,6 +6,7 @@ const promptInput = document.getElementById("prompt");
 const generateBtn = document.getElementById("btn");
 const imageUploader = document.getElementById("imageUploader");
 const audioUploader = document.getElementById("audioUploader");
+const streamCheck = document.getElementById("stream");
 
 imageUploader.addEventListener("input", () => {
   document
@@ -18,7 +19,7 @@ audioUploader.addEventListener("input", () => {
     .classList.add("uploadImageAudio");
 });
 
-const API_KEY = "YOUR_API_KEY";
+const API_KEY = "AIzaSyC3UI4rWho109fPv-bRuilIXRdHDwe0Hio";
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 const chat = model.startChat({
@@ -50,8 +51,24 @@ const toBase64 = (file) => {
 
 const generateResult = async (prompt) => {
   try {
-    const result = await chat.sendMessage(prompt);
-    const text = await result.response.text();
+    const checked = streamCheck.checked;
+    // If the user wants to stream the response, the call this
+    const result = checked ? await chat.sendMessageStream(prompt) : await chat.sendMessage(prompt);
+
+    let text = ""
+    const element = addMessage("", "response-message");
+
+    if(checked) {
+      for await (const chunk of result.stream) {
+        text += chunk.text();
+        // Add the message to the same element
+        addMessage(text, "response-message", element);
+      }
+    } else {
+      text = await result.response.text();
+      // Add the message to the exiting element
+      addMessage(text, "response-message", element);
+    }
 
     imageUploader.value = "";
     document
@@ -63,18 +80,24 @@ const generateResult = async (prompt) => {
       .querySelector("div[class='audio'] i")
       .classList.remove("uploadImageAudio");
 
-    addMessage(text, "response-message");
   } catch (error) {
     addMessage("An error occurred: " + error.message, "response-message");
   }
 };
 
-function addMessage(text, className) {
-  const messageDiv = document.createElement("div");
+function addMessage(text, className, messageDiv=null) {
+  if(messageDiv === null) {
+    messageDiv = document.createElement("div");
+    chatContainer.appendChild(messageDiv);
+  }
   messageDiv.className = className;
   messageDiv.innerHTML = marked.parse(text);
-  chatContainer.appendChild(messageDiv);
-  chatContainer.scrollTop = chatContainer.scrollHeight; // Auto-scroll
+  // Scroll to the bottom of the window
+  window.scrollBy({
+    top: chatContainer.scrollHeight
+  });
+  // Return the same container
+  return messageDiv;
 }
 
 generateBtn.addEventListener("click", async () => {
