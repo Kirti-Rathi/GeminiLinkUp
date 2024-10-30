@@ -56,7 +56,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4rem;
   width: auto;
   max-height: 65%;
 }
