@@ -21,6 +21,21 @@ audioUploader.addEventListener("input", () => {
 const API_KEY = "YOUR_API_KEY";
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const chat = model.startChat({
+  history: [
+    {
+      role: "user",
+      parts: [{ text: "Hello, You will answer to my prompts." }],
+    },
+    {
+      role: "model",
+      parts: [{ text: "Great to meet you. What would you like to know?" }],
+    },
+  ],
+  generationConfig: {
+    maxOutputTokens: 1000,
+  },
+});
 
 // SHOULD BE EXPLAINED OR NOT?
 const toBase64 = (file) => {
@@ -32,9 +47,10 @@ const toBase64 = (file) => {
   });
 };
 
+
 const generateResult = async (prompt) => {
   try {
-    const result = await model.generateContent(prompt);
+    const result = await chat.sendMessage(prompt);
     const text = await result.response.text();
 
     imageUploader.value = "";
