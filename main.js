@@ -19,7 +19,9 @@ audioUploader.addEventListener("input", () => {
     .classList.add("uploadImageAudio");
 });
 
-const API_KEY = "YOUR_API_KEY";
+// !
+// const API_KEY = "YOUR_API_KEY";
+const API_KEY = "AIzaSyA3PG5D2f2Hbsn0s6WX9jXKMMB1Ww1EDHk";
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 const chat = model.startChat({
@@ -48,17 +50,18 @@ const toBase64 = (file) => {
   });
 };
 
-
 const generateResult = async (prompt) => {
   try {
     const checked = streamCheck.checked;
     // If the user wants to stream the response, the call this
-    const result = checked ? await chat.sendMessageStream(prompt) : await chat.sendMessage(prompt);
+    const result = checked
+      ? await chat.sendMessageStream(prompt)
+      : await chat.sendMessage(prompt);
 
-    let text = ""
+    let text = "";
     const element = addMessage("", "response-message");
 
-    if(checked) {
+    if (checked) {
       for await (const chunk of result.stream) {
         text += chunk.text();
         // Add the message to the same element
@@ -79,14 +82,13 @@ const generateResult = async (prompt) => {
     document
       .querySelector("div[class='audio'] i")
       .classList.remove("uploadImageAudio");
-
   } catch (error) {
     addMessage("An error occurred: " + error.message, "response-message");
   }
 };
 
-function addMessage(text, className, messageDiv=null) {
-  if(messageDiv === null) {
+function addMessage(text, className, messageDiv = null) {
+  if (messageDiv === null) {
     messageDiv = document.createElement("div");
     chatContainer.appendChild(messageDiv);
   }
@@ -94,7 +96,7 @@ function addMessage(text, className, messageDiv=null) {
   messageDiv.innerHTML = marked.parse(text);
   // Scroll to the bottom of the window
   window.scrollBy({
-    top: chatContainer.scrollHeight
+    top: chatContainer.scrollHeight,
   });
   // Return the same container
   return messageDiv;
@@ -102,7 +104,9 @@ function addMessage(text, className, messageDiv=null) {
 
 generateBtn.addEventListener("click", async () => {
   // Cleanse the prompt
-  promptInput.value = promptInput.value.replaceAll('\t', '').replaceAll('\n', '');
+  promptInput.value = promptInput.value
+    .replaceAll("\t", "")
+    .replaceAll("\n", "");
   if (!promptInput.value || promptInput.value.length === 0) return;
 
   const prompt = [{ text: promptInput.value }];
@@ -131,14 +135,13 @@ generateBtn.addEventListener("click", async () => {
   generateResult(prompt);
 });
 
-
 /**
  * Event listener to submit when pressed enter
  * (optinal)
  */
 promptInput.addEventListener("keydown", (event) => {
-  if(event.key === "Enter" && !event.shiftKey) {
+  if (event.key === "Enter" && !event.shiftKey) {
     // Simulate clicking the button
-    generateBtn.click()
+    generateBtn.click();
   }
 });
