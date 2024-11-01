@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Kay+Pho+Du:wght@400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +9,19 @@
   font-family: "Robot", sans-serif;
 }
 
-html,
+html {
+  background: #111;
+}
+
 body {
   width: 100%;
   min-height: 100vh;
-  background-color: #121212;
+  /* background: linear-gradient(135deg, #a185ff, #c285ff, #a1e2ff); */
+  background-image: url("https://images.unsplash.com/photo-1464014449614-e470468e3ec1?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fHw%3D");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+
 }
 
 .vertical-divider {
@@ -37,19 +45,20 @@ body {
 }
 
 .overlay header h1 {
-  font-family: "Orbitron";
+  /* font-family: "Orbitron"; */
+   font-family: "JetBrains Mono", monospace;
   font-size: 56px;
   font-weight: 500;
 
   /* Text Gradient */
-  background: -webkit-linear-gradient(
-    117deg,
-    rgba(87, 129, 236, 1) 0%,
-    rgba(173, 110, 177, 1) 62%,
-    rgba(212, 102, 119, 1) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  /* background: -webkit-linear-gradient( */
+  /*   117deg, */
+  /*   rgba(87, 129, 236, 1) 0%, */
+  /*   rgba(173, 110, 177, 1) 62%, */
+  /*   rgba(212, 102, 119, 1) 100% */
+  /* ); */
+  /* -webkit-background-clip: text; */
+  /* -webkit-text-fill-color: transparent; */
 
   color: #fff;
   text-align: center;
@@ -74,7 +83,7 @@ body {
 .response-message {
   max-width: 80%;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 20px;
   color: #fff;
 
   font-family: monospace;
@@ -84,6 +93,12 @@ body {
   margin-left: 30px;
   margin-right: 30px;
   box-shadow: rgb(93, 93, 93) 1px 1px 1px;
+  background: linear-gradient(135deg,rgba(255, 255, 255, 0.1),rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 300ms ease-out;
 }
 
 .user-message {
@@ -95,11 +110,21 @@ body {
 }
 
 .response-message {
-  background-color: #464640;
+  /* background-color: #464640; */
+  background-color: #111;
   align-self: flex-start;
   border-bottom-left-radius: 2px;
   padding-left: 20px;
   padding-right: 20px;
+  background: linear-gradient(
+  135deg,
+  rgba(255, 255, 255, 0.1),
+  rgba(255, 255, 255, 0)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .response-message p {
@@ -114,6 +139,7 @@ body {
   top: auto;
   margin: 0rem 0.5rem;
   margin-bottom: 1rem;
+  z-index: 100;
 }  
 
 .content {
@@ -127,9 +153,15 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-.content > textarea {
+.content > input {
   width: auto;
   flex: 1 1 0%;
   height: 2rem;

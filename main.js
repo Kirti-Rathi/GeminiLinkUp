@@ -5,7 +5,7 @@ const chatContainer = document.getElementById("chatContainer");
 const promptInput = document.getElementById("prompt");
 const generateBtn = document.getElementById("btn");
 const imageUploader = document.getElementById("imageUploader");
-const audioUploader = document.getElementById("audioUploader");
+// const audioUploader = document.getElementById("audioUploader");
 const streamCheck = document.getElementById("stream");
 
 imageUploader.addEventListener("input", () => {
@@ -13,17 +13,15 @@ imageUploader.addEventListener("input", () => {
     .querySelector("div[class='image'] i")
     .classList.add("uploadImageAudio");
 });
-audioUploader.addEventListener("input", () => {
-  document
-    .querySelector("div[class='audio'] i")
-    .classList.add("uploadImageAudio");
-});
+// audioUploader.addEventListener("input", () => {
+//   document
+//     .querySelector("div[class='audio'] i")
+//     .classList.add("uploadImageAudio");
+// });
 
-// !
-// const API_KEY = "YOUR_API_KEY";
-const API_KEY = "AIzaSyA3PG5D2f2Hbsn0s6WX9jXKMMB1Ww1EDHk";
+const API_KEY = "API_KEY";
 const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 const chat = model.startChat({
   history: [
     {
@@ -123,15 +121,15 @@ generateBtn.addEventListener("click", async () => {
       },
     });
   }
-  if (audioUploader.files.length > 0) {
-    const audioData = await toBase64(audioUploader.files[0]);
-    prompt.push({
-      inline_data: {
-        data: audioData,
-        mime_type: "audio/mpeg",
-      },
-    });
-  }
+  // if (audioUploader.files.length > 0) {
+  //   const audioData = await toBase64(audioUploader.files[0]);
+  //   prompt.push({
+  //     inline_data: {
+  //       data: audioData,
+  //       mime_type: "audio/mpeg",
+  //     },
+  //   });
+  // }
   generateResult(prompt);
 });
 
